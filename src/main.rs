@@ -36,6 +36,6 @@ fn get_file_path(args: &Vec<String>) -> Result<&str, Box<Error>> {
     if args.len() >= 3 {
         Ok(&args[2])
     } else {
-        Err(From::from("Usage: cargo run <add_person|list_people> <file_path>"))
+        Err(From::from("Usage: cargo run <module_name> <file_path>"))
     }
 }
