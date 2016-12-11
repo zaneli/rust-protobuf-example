@@ -1,0 +1,6 @@
+[package]
+name = "rust-protobuf-example"
+version = "0.1.0"
+authors = ["zaneli <shun.otani@gmail.com>"]
+
+[dependencies]
