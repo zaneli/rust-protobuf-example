@@ -1,0 +1,14 @@
+[root]
+name = "rust-protobuf-example"
+version = "0.1.0"
+dependencies = [
+ "protobuf 1.0.24 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "protobuf"
+version = "1.0.24"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[metadata]
+"checksum protobuf 1.0.24 (registry+https://github.com/rust-lang/crates.io-index)" = "6ec4c2fe04370298218a09ab53a534febf54c160c5554e4de987b6d73c916d5d"
