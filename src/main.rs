@@ -11,7 +11,7 @@ use std::io::{stderr, Write};
 fn main() {
     let args: Vec<String> = env::args().collect();
     get_module_name(&args).and_then(|f| get_file_path(&args).and_then(f)).unwrap_or_else(|e| {
-        let _ = stderr().write(&(e.to_string() + "\n").into_bytes());
+        stderr().write_fmt(format_args!("{}\n", e)).unwrap();
         process::exit(-1);
     })
 }
