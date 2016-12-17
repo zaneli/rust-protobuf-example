@@ -18,7 +18,7 @@ fn main() {
 
 fn get_module_name(args: &Vec<String>) -> Result<fn(&str) -> Result<(), Box<Error>>, Box<Error>> {
     if args.len() >= 2 {
-        match String::as_ref(&args[1]) {
+        match args[1].as_ref() {
             "add_person" => Ok(add_person::execute),
             "list_people" => Ok(list_people::execute),
             other => {
