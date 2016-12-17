@@ -2,12 +2,12 @@ extern crate protobuf;
 
 use addressbook::{AddressBook, Person_PhoneType as PhoneType};
 use protobuf::parse_from_reader;
-use std::error::Error;
+use protobuf::error::ProtobufError;
 use std::fs::File;
 use std::path::Path;
 
-pub fn execute(file_path: &str) -> Result<(), Box<Error>> {
-    let mut file = try!(File::open(&Path::new(file_path)));
+pub fn execute(file_path: &str) -> Result<(), ProtobufError> {
+    let mut file = try!(File::open(&Path::new(file_path)).map_err(ProtobufError::IoError));
     let address = try!(parse_from_reader::<AddressBook>(&mut file));
     print(&address);
     Ok(())
