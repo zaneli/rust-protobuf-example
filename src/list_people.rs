@@ -7,8 +7,8 @@ use std::fs::File;
 use std::path::Path;
 
 pub fn execute(file_path: &str) -> ProtobufResult<()> {
-    let mut file = try!(File::open(&Path::new(file_path)).map_err(ProtobufError::IoError));
-    let address = try!(parse_from_reader::<AddressBook>(&mut file));
+    let mut file = File::open(&Path::new(file_path)).map_err(ProtobufError::IoError)?;
+    let address = parse_from_reader::<AddressBook>(&mut file)?;
     print(&address);
     Ok(())
 }
