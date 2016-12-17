@@ -2,13 +2,13 @@ extern crate protobuf;
 
 use addressbook::{AddressBook, Person, Person_PhoneNumber as PhoneNumber,
                   Person_PhoneType as PhoneType};
-use protobuf::{CodedInputStream, CodedOutputStream, Message, RepeatedField};
+use protobuf::{CodedInputStream, CodedOutputStream, Message, ProtobufResult, RepeatedField};
 use protobuf::error::ProtobufError;
 use std::fs::File;
 use std::io::{self, BufRead, BufReader, BufWriter, stdin};
 use std::path::Path;
 
-pub fn execute(file_path: &str) -> Result<(), ProtobufError> {
+pub fn execute(file_path: &str) -> ProtobufResult<()> {
     let mut address = AddressBook::new();
 
     let path = Path::new(file_path);
@@ -33,7 +33,7 @@ pub fn execute(file_path: &str) -> Result<(), ProtobufError> {
     Ok(())
 }
 
-fn prompt_for_address() -> Result<Person, ProtobufError> {
+fn prompt_for_address() -> ProtobufResult<Person> {
     let mut person = Person::new();
     let stdin = stdin();
 

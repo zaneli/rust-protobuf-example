@@ -4,6 +4,7 @@ mod addressbook;
 mod add_person;
 mod list_people;
 
+use protobuf::ProtobufResult;
 use protobuf::error::ProtobufError;
 use std::{env, process};
 use std::io::{self, stderr, Write};
@@ -19,7 +20,7 @@ fn main() {
         })
 }
 
-fn get_module_name(args: &Vec<String>) -> Result<fn(&str) -> Result<(), ProtobufError>, io::Error> {
+fn get_module_name(args: &Vec<String>) -> Result<fn(&str) -> ProtobufResult<()>, io::Error> {
     if args.len() >= 2 {
         match args[1].as_ref() {
             "add_person" => Ok(add_person::execute),
