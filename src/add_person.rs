@@ -5,7 +5,7 @@ use addressbook::{AddressBook, Person, Person_PhoneNumber as PhoneNumber,
 use protobuf::{CodedInputStream, CodedOutputStream, Message, ProtobufResult, RepeatedField};
 use protobuf::error::ProtobufError;
 use std::fs::File;
-use std::io::{self, BufRead, BufReader, BufWriter, stdin};
+use std::io::{self, stdin, BufRead, BufReader};
 use std::path::Path;
 
 pub fn execute(file_path: &str) -> ProtobufResult<()> {
@@ -25,9 +25,8 @@ pub fn execute(file_path: &str) -> ProtobufResult<()> {
     people.push(person);
     address.set_people(people);
 
-    let file = File::create(&path).map_err(ProtobufError::IoError)?;
-    let mut bw = BufWriter::new(file);
-    let mut cos = CodedOutputStream::new(&mut bw);
+    let mut file = File::create(&path).map_err(ProtobufError::IoError)?;
+    let mut cos = CodedOutputStream::new(&mut file);
     address.write_to(&mut cos)?;
     cos.flush()?;
     Ok(())
