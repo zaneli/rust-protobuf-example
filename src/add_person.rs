@@ -1,5 +1,3 @@
-extern crate protobuf;
-
 use crate::addressbook::{
     AddressBook, Person, Person_PhoneNumber as PhoneNumber, Person_PhoneType as PhoneType,
 };

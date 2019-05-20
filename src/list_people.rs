@@ -1,5 +1,3 @@
-extern crate protobuf;
-
 use crate::addressbook::{AddressBook, Person_PhoneType as PhoneType};
 use protobuf::error::ProtobufError;
 use protobuf::{parse_from_reader, ProtobufResult};

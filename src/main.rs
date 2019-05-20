@@ -1,5 +1,3 @@
-extern crate protobuf;
-
 mod addressbook;
 mod add_person;
 mod list_people;
