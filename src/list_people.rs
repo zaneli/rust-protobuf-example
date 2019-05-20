@@ -17,7 +17,7 @@ fn print(address: &AddressBook) {
     for person in address.get_people() {
         println!("Person ID: {}", person.get_id());
         println!("  Name: {}", person.get_name());
-        if person.has_email() {
+        if !person.get_email().is_empty() {
             println!("  E-mail address: {}", person.get_email());
         }
         for phone in person.get_phones() {
