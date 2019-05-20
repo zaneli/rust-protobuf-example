@@ -1,9 +1,10 @@
 extern crate protobuf;
 
-use addressbook::{AddressBook, Person, Person_PhoneNumber as PhoneNumber,
-                  Person_PhoneType as PhoneType};
-use protobuf::{CodedInputStream, CodedOutputStream, Message, ProtobufResult, RepeatedField};
+use addressbook::{
+    AddressBook, Person, Person_PhoneNumber as PhoneNumber, Person_PhoneType as PhoneType,
+};
 use protobuf::error::ProtobufError;
+use protobuf::{CodedInputStream, CodedOutputStream, Message, ProtobufResult, RepeatedField};
 use std::fs::File;
 use std::io::{self, stdin, BufRead, BufReader};
 use std::path::Path;
@@ -38,19 +39,30 @@ fn prompt_for_address() -> ProtobufResult<Person> {
 
     println!("Enter person ID: ");
     let mut id = String::new();
-    stdin.lock().read_line(&mut id).map_err(ProtobufError::IoError)?;
-    person.set_id(id.trim()
-        .parse()
-        .map_err(|e| ProtobufError::IoError(io::Error::new(io::ErrorKind::InvalidInput, e)))?);
+    stdin
+        .lock()
+        .read_line(&mut id)
+        .map_err(ProtobufError::IoError)?;
+    person.set_id(
+        id.trim()
+            .parse()
+            .map_err(|e| ProtobufError::IoError(io::Error::new(io::ErrorKind::InvalidInput, e)))?,
+    );
 
     println!("Enter neme: ");
     let mut name = String::new();
-    stdin.lock().read_line(&mut name).map_err(ProtobufError::IoError)?;
+    stdin
+        .lock()
+        .read_line(&mut name)
+        .map_err(ProtobufError::IoError)?;
     person.set_name(name.trim().to_string());
 
     println!("Enter email address (blank for none): ");
     let mut email = String::new();
-    stdin.lock().read_line(&mut email).map_err(ProtobufError::IoError)?;
+    stdin
+        .lock()
+        .read_line(&mut email)
+        .map_err(ProtobufError::IoError)?;
     if !email.trim().is_empty() {
         person.set_email(email.trim().to_string());
     }
@@ -61,7 +73,10 @@ fn prompt_for_address() -> ProtobufResult<Person> {
 
         println!("Enter a phone number (or leave blank to finish): ");
         let mut number = String::new();
-        stdin.lock().read_line(&mut number).map_err(ProtobufError::IoError)?;
+        stdin
+            .lock()
+            .read_line(&mut number)
+            .map_err(ProtobufError::IoError)?;
         if number.trim().is_empty() {
             break;
         }
@@ -69,7 +84,10 @@ fn prompt_for_address() -> ProtobufResult<Person> {
 
         println!("Is this a mobile, home, or work phone? ");
         let mut phone_type = String::new();
-        stdin.lock().read_line(&mut phone_type).map_err(ProtobufError::IoError)?;
+        stdin
+            .lock()
+            .read_line(&mut phone_type)
+            .map_err(ProtobufError::IoError)?;
         match phone_type.trim() {
             "mobile" => phone.set_field_type(PhoneType::MOBILE),
             "home" => phone.set_field_type(PhoneType::HOME),

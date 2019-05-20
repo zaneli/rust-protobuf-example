@@ -1,8 +1,8 @@
 extern crate protobuf;
 
 use addressbook::{AddressBook, Person_PhoneType as PhoneType};
-use protobuf::{parse_from_reader, ProtobufResult};
 use protobuf::error::ProtobufError;
+use protobuf::{parse_from_reader, ProtobufResult};
 use std::fs::File;
 use std::path::Path;
 
