@@ -1,6 +1,6 @@
 extern crate protobuf;
 
-use addressbook::{
+use crate::addressbook::{
     AddressBook, Person, Person_PhoneNumber as PhoneNumber, Person_PhoneType as PhoneType,
 };
 use protobuf::error::ProtobufError;
